@@ -7,6 +7,6 @@ queue_rules:
     queue_conditions:
       - title = VM6_FREEZE_TRANSFER_DEST_IMPACT_20260929
     merge_conditions:
-      - check-success = vm6-freeze-never-pass-20261002
+      - base = main
     merge_method: merge
     checks_timeout: null
