@@ -27,6 +27,7 @@ CREATE POLICY vm6_tenant_gate ON "accounts" USING ("tenant_id" = current_setting
 -- stable section 1-23
 -- stable section 1-24
 CREATE TABLE "audit_events" ("id" bigint PRIMARY KEY, "account_id" bigint NOT NULL);
+CREATE INDEX "audit_events_account_id_idx" ON "audit_events" ("account_id");
 -- stable section 2-01
 -- stable section 2-02
 -- stable section 2-03
@@ -54,4 +55,5 @@ CREATE TABLE "audit_events" ("id" bigint PRIMARY KEY, "account_id" bigint NOT NU
 CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL);
 INSERT INTO "schema_migrations" (version) VALUES
 ('20260901000000'),
-('20261010010000');
+('20261010010000'),
+('20261010010100');
