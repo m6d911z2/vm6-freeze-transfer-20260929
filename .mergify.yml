@@ -5,6 +5,25 @@ queue_rules:
     merge_conditions:
       - label = VM6_QUEUEFRESH_NEVER_261005
     merge_method: merge
+  - name: vm6-codeowner-auto-261010
+    batch_size: 2
+    batch_max_wait_time: 30s
+    max_checks_retries: 0
+    queue_conditions:
+      - base = vm6-codeowner-base-261010
+      - title ~= ^VM6_CODEOWNER_(READ|PEER)_261010$
+    merge_conditions:
+      - check-success = vm6-codeowner-never-261010
+    merge_method: merge-batch
 merge_queue:
   max_parallel_checks: 1
   queue_controls_comment: false
+
+
+pull_request_rules:
+  - name: VM6 preapproved external workflow queue only
+    conditions:
+      - base = vm6-codeowner-base-261010
+      - title ~= ^VM6_CODEOWNER_(READ|PEER)_261010$
+    actions:
+      queue: {}
