@@ -1,5 +1,7 @@
 -- VM6 owned inert Rails structure.sql test fixture
 CREATE TABLE "accounts" ("id" bigint PRIMARY KEY, "tenant_id" bigint NOT NULL);
+ALTER TABLE "accounts" ENABLE ROW LEVEL SECURITY;
+CREATE POLICY vm6_tenant_gate ON "accounts" USING ("tenant_id" = current_setting('app.tenant_id', true)::bigint);
 -- stable section 1-01
 -- stable section 1-02
 -- stable section 1-03
@@ -51,4 +53,5 @@ CREATE TABLE "audit_events" ("id" bigint PRIMARY KEY, "account_id" bigint NOT NU
 -- stable section 2-24
 CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL);
 INSERT INTO "schema_migrations" (version) VALUES
-('20260901000000');
+('20260901000000'),
+('20261010010000');
