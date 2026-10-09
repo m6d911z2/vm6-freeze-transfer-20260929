@@ -1,0 +1,1 @@
+VM6 owner inert context-queue marker; no executable instructions, secrets, or privileged operation.
