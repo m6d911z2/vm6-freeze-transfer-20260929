@@ -1,0 +1,54 @@
+-- VM6 owned inert Rails structure.sql test fixture
+CREATE TABLE "accounts" ("id" bigint PRIMARY KEY, "tenant_id" bigint NOT NULL);
+-- stable section 1-01
+-- stable section 1-02
+-- stable section 1-03
+-- stable section 1-04
+-- stable section 1-05
+-- stable section 1-06
+-- stable section 1-07
+-- stable section 1-08
+-- stable section 1-09
+-- stable section 1-10
+-- stable section 1-11
+-- stable section 1-12
+-- stable section 1-13
+-- stable section 1-14
+-- stable section 1-15
+-- stable section 1-16
+-- stable section 1-17
+-- stable section 1-18
+-- stable section 1-19
+-- stable section 1-20
+-- stable section 1-21
+-- stable section 1-22
+-- stable section 1-23
+-- stable section 1-24
+CREATE TABLE "audit_events" ("id" bigint PRIMARY KEY, "account_id" bigint NOT NULL);
+-- stable section 2-01
+-- stable section 2-02
+-- stable section 2-03
+-- stable section 2-04
+-- stable section 2-05
+-- stable section 2-06
+-- stable section 2-07
+-- stable section 2-08
+-- stable section 2-09
+-- stable section 2-10
+-- stable section 2-11
+-- stable section 2-12
+-- stable section 2-13
+-- stable section 2-14
+-- stable section 2-15
+-- stable section 2-16
+-- stable section 2-17
+-- stable section 2-18
+-- stable section 2-19
+-- stable section 2-20
+-- stable section 2-21
+-- stable section 2-22
+-- stable section 2-23
+-- stable section 2-24
+CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL);
+INSERT INTO "schema_migrations" (version) VALUES
+('20260901000000');
