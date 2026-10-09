@@ -1,7 +1,7 @@
 -- VM6 inert PostgreSQL RLS guard conflict fixture
 CREATE TABLE "accounts" ("id" bigint PRIMARY KEY, "tenant_id" bigint NOT NULL);
 -- stable SQL section 01
-ALTER TABLE "accounts" ENABLE ROW LEVEL SECURITY;
+ALTER TABLE "accounts" FORCE ROW LEVEL SECURITY;
 CREATE POLICY "vm6_tenant_guard" ON "accounts" USING ("tenant_id" = current_setting('app.tenant_id', true)::bigint);
 -- stable SQL padding 01
 -- stable SQL padding 02
@@ -52,4 +52,5 @@ CREATE TABLE "audit_events" ("id" bigint PRIMARY KEY, "account_id" bigint NOT NU
 -- stable SQL section2 19
 CREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL);
 INSERT INTO "schema_migrations" (version) VALUES
-('20260901000000');
+('20260901000000'),
+('20261010020000');
