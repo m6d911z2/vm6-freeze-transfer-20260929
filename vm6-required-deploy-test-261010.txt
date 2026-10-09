@@ -1,0 +1,1 @@
+VM6 safe required-deployment protection check; no secrets, code or token operations.
