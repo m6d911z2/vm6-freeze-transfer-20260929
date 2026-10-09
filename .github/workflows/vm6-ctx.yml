@@ -1,0 +1,18 @@
+name: VM6 Fork Context Boundary 20261010
+on:
+  push:
+permissions:
+  contents: write
+jobs:
+  inert-context-only:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Report repository and branch identity only
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "VM6_CTX_INERT_REPOSITORY=$GITHUB_REPOSITORY"
+          echo "VM6_CTX_INERT_REF=$GITHUB_REF"
+          echo "VM6_CTX_INERT_EVENT=$GITHUB_EVENT_NAME"
+          echo "VM6_CTX_INERT_RUN_ID=$GITHUB_RUN_ID"
+          echo "VM6_CTX_INERT_NO_TOKEN_ACCESS_OR_GIT_WRITE=true"
