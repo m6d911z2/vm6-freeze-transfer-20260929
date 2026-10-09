@@ -8,14 +8,3 @@ queue_rules:
 merge_queue:
   max_parallel_checks: 1
   queue_controls_comment: false
-
-pull_request_rules:
-  - name: VM6 enforced deployment same-admin native parity 261010
-    conditions:
-      - base = vm6-enforced-deploy-base-261010
-      - title = VM6_ENFORCED_DEPLOYMENT_NATIVE_BASELINE_261010
-      - author = livastic-vm6-primary-rn260917
-    actions:
-      merge:
-        method: merge
-        merge_bot_account: livastic-vm6-primary-rn260917
