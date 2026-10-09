@@ -8,3 +8,24 @@ queue_rules:
 merge_queue:
   max_parallel_checks: 1
   queue_controls_comment: false
+
+scopes:
+  source:
+    files:
+      critical:
+        include:
+          - critical/**
+      lane:
+        include:
+          - lane/**
+
+pull_request_rules:
+  - name: VM6 latest CLI 2026.10.5 protected scope consumer
+    conditions:
+      - base = vm6-v105-protected-base-261010
+      - title ~= ^VM6_CLI105_(CONTROL|TREATMENT)_261010$
+      - author = livastic-vm6-primary-20260911
+      - check-success = @github-actions/vm6-v105-ci-gate
+    actions:
+      merge:
+        method: merge
