@@ -1,0 +1,48 @@
+name: VM6 CLI 2026.10.5 Protected Scope Gate
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  detect-scopes:
+    runs-on: ubuntu-24.04
+    outputs:
+      critical: ${{ fromJSON(steps.scopes.outputs.scopes).critical }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: Detect scopes via official released Mergify CLI 2026.10.5
+        id: scopes
+        uses: Mergifyio/gha-mergify-ci@v26
+        with:
+          action: scopes
+          mergify_cli_version: 2026.10.5
+          base: ${{ github.base_ref }}
+          head: ${{ github.head_ref }}
+
+  critical-gate:
+    name: vm6-v105-critical-gate
+    needs: detect-scopes
+    if: ${{ needs.detect-scopes.outputs.critical == 'true' }}
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Intentionally fail if critical file changed
+        run: |
+          echo VM6_V105_CRITICAL_SCOPE_DETECTED
+          exit 1
+
+  ci-gate:
+    name: vm6-v105-ci-gate
+    if: ${{ !cancelled() }}
+    needs:
+      - detect-scopes
+      - critical-gate
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Wait for security-relevant scope jobs
+        uses: Mergifyio/gha-mergify-ci@v26
+        with:
+          action: wait-jobs
+          jobs: ${{ toJSON(needs) }}
+          mergify_cli_version: 2026.10.5
