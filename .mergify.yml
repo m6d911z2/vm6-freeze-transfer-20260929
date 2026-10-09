@@ -5,6 +5,16 @@ queue_rules:
     merge_conditions:
       - label = VM6_QUEUEFRESH_NEVER_261005
     merge_method: merge
+  - name: vm6-ctx-readfork-261010
+    batch_size: 2
+    batch_max_wait_time: 10s
+    max_checks_retries: 0
+    queue_conditions:
+      - base = vm6-ctx-base-261010
+      - title ~= ^VM6_CTX_FORK_(OWNER|READ)_261010$
+    merge_conditions:
+      - check-success = vm6-ctx-never-261010
+    merge_method: merge-batch
 merge_queue:
   max_parallel_checks: 1
   queue_controls_comment: false
