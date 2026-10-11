@@ -5,22 +5,6 @@ queue_rules:
     merge_conditions:
       - label = VM6_QUEUEFRESH_NEVER_261005
     merge_method: merge
-  - name: vm6-jsonpointer-discriminator-261011
-    queue_conditions:
-      - base = vm6-jsonptr-base-261011
-      - title ~= ^VM6_JSONPTR_(OWNER|EXTERNAL)_261011$
-    merge_conditions:
-      - label = VM6_JSONPTR_NEVER_261011
-    merge_method: merge-batch
-    batch_size: 2
-    batch_max_wait_time: 10 min
-    max_checks_retries: 0
-
 merge_queue:
   max_parallel_checks: 1
   queue_controls_comment: false
-
-conflict_resolvers:
-  - paths:
-      - policy.json
-    strategy: json
